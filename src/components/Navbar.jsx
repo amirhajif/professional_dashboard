@@ -34,6 +34,15 @@ const Navbar = () => {
     return ()=>window.removeEventListener('resize', handleResize)
 
   },[]);
+
+  useEffect(()=>{
+    if(setScreenSize<=900){
+      setActiveMenu(false)
+    }
+    else{
+      setActiveMenu(true);
+    }
+  },[screenSize])
   return (
     <div className='flex justify-between p-2 md:mx-6 relative'>
       <NavButton title="Menu" icon={<AiOutlineMenu />} customFunc={()=>setActiveMenu((prevActiveMenu)=>!prevActiveMenu)} color="blue" />
@@ -68,7 +77,7 @@ const Navbar = () => {
           <MdKeyboardArrowDown className='text-gray-400 text-14 ' />
         </div>
       </TooltipComponent>
-      
+
       {isClicked.cart && <Cart />}
       {isClicked.chat && <Chat />}
       {isClicked.notification && <Notification />}
